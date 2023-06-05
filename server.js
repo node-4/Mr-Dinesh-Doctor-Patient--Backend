@@ -22,15 +22,25 @@ mongoose
 app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
-
-const paitent = require("./routes/paitent.route")
 const address =require("./routes/address.route")
+const admin =require("./routes/admin.route")
 const docter =require("./routes/docter.route")
 const document =require("./routes/document.route")
+const healthCategory =require("./routes/healthCategory.route");
+const testhealth =require("./routes/heathtestRouter")
+const paitent = require("./routes/paitent.route")
+const preferenceRouter =require("./routes/preferenceRouter")
+const product =require("./routes/product.route")
+
+app.use("/api/v1/admin", admin);
 app.use("/api/v1/paitents", paitent);
 app.use("/api/v1/address", address);
 app.use("/api/v1/docter", docter);
 app.use("/api/v1/document", document);
+app.use("/api/v1/testhealth", testhealth);
+app.use("/api/v1/healthCategory", healthCategory);
+app.use("/api/v1/preferenceRouter", preferenceRouter);
+app.use("/api/v1/product", product);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

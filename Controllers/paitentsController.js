@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user.model");
 const Address = require("../models/AddressModel");
+const helpandSupport = require("../models/helpandsupport");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
 var newOTP = require("otp-generators");
@@ -296,5 +297,16 @@ exports.changePassword = async (req, res) => {
         res.status(500).json({
             message: "An error occurred. Please try again later.",
         });
+    }
+};
+exports.AddQuery = async (req, res) => {
+    try {
+        req.body.user = req.user._id;
+        const Data = await helpandSupport.create(req.body);
+        res.status(200).json({message: Data,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({message: err.message,});
     }
 };

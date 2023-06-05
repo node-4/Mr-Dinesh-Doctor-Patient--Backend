@@ -49,6 +49,10 @@ var userSchema = new schema(
             type: Boolean,
             default: false,
         },
+        verifiedDoctor: {
+            type: Boolean,
+            default: false,
+        },
         role:{
             type: String,
         }
