@@ -1,4 +1,5 @@
 const chatModel = require('../models/chatModel');
+const userModel = require("../Models/user.model");
 exports.userChat=async (req, res) => {
         try {
                 let userData = await userModel.findOne({ _id: req.userId });
