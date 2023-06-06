@@ -31,7 +31,8 @@ const testhealth =require("./routes/heathtestRouter")
 const paitent = require("./routes/paitent.route")
 const preferenceRouter =require("./routes/preferenceRouter")
 const product =require("./routes/product.route")
-
+const booking =require("./routes/bookingRouter")
+const chat =require("./routes/chat.router")
 app.use("/api/v1/admin", admin);
 app.use("/api/v1/paitents", paitent);
 app.use("/api/v1/address", address);
@@ -41,6 +42,8 @@ app.use("/api/v1/testhealth", testhealth);
 app.use("/api/v1/healthCategory", healthCategory);
 app.use("/api/v1/preferenceRouter", preferenceRouter);
 app.use("/api/v1/product", product);
+app.use("/api/v1/booking", booking);
+app.use("/api/v1/chat", chat);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

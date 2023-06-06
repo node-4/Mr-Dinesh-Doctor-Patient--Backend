@@ -1,7 +1,6 @@
 const productController = require("../controllers/product.controller");
 const authJwt = require("../middlewares/authJwt");
-const express = require("express");
-const router = express();
+const router = require('express').Router();
 router.post("/createProduct",[authJwt.verifyToken],productController.createProduct);
 router.get("/admin/:id", productController.getIdProduct);
 router.patch("/updateProduct/:id",[authJwt.verifyToken],productController.updateProduct);

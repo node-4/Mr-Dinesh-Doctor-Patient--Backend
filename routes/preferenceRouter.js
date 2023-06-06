@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const preferenceController = require("../Controllers/preferenceController");
-const authJwt = require("../Middlewares/authJwt");
+const authJwt = require("../middlewares/authJwt");
 
-router.post('/addpreference',[authJwt.verifyToken], preferenceController.addpreference);
-router.get('/getpreferencebytestid/:testID',[authJwt.verifyToken], preferenceController.getpreferencebytestid);
-router.get('/getpreferencebyid/:id',[authJwt.verifyToken], preferenceController.getpreferencebyid);
-router.get('/getallpreference',[authJwt.verifyToken], preferenceController.getallpreference);
-router.delete('/deletepreference/:id',[authJwt.verifyToken], preferenceController.deletepreference);
-router.put('/editpreference/:id',[authJwt.verifyToken], preferenceController.editpreference);
+router.post('/addpreference', preferenceController.addpreference);
+router.get('/getpreferencebytestid/:testID', preferenceController.getpreferencebytestid);
+router.get('/getpreferencebyid/:id', preferenceController.getpreferencebyid);
+router.get('/getallpreference', preferenceController.getallpreference);
+router.delete('/deletepreference/:id', preferenceController.deletepreference);
+router.put('/editpre/:ferenceid', preferenceController.editpreference);
 module.exports = router;

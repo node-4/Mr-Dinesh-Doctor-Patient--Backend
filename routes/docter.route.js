@@ -1,7 +1,6 @@
 const auth = require("../controllers/doctorController");
 const authJwt = require("../middlewares/authJwt");
-const express = require('express'); 
-const router = express();
+const router = require('express').Router();
 router.post('/loginWithPhone',auth.loginWithPhone);
 router.post('/registrationFirst/:id',auth.registrationFirst);
 router.post("/:id", auth.verifyOtp);

@@ -1,7 +1,6 @@
 const auth = require("../controllers/documentController");
 const authJwt = require("../middlewares/authJwt");
-const express = require('express'); 
-const router = express();
+const router = require('express').Router();
 router.post('/createDocument/:id',auth.createDocument);
 router.get('/getDocument',authJwt.verifyToken,auth.getDocument);
 router.put('/update/:id',authJwt.verifyToken,auth.updateDocument);

@@ -1,7 +1,6 @@
 const auth = require("../controllers/paitentsController");
 const authJwt = require("../middlewares/authJwt");
-const express = require("express");
-const router = express();
+const router = require('express').Router();
 router.post("/registration", auth.registration);
 router.post("/loginWithPhone", auth.loginWithPhone);
 router.post("/:id", auth.verifyOtp);

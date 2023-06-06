@@ -1,8 +1,6 @@
 const auth = require("../controllers/adminController");
 const authJwt = require("../middlewares/authJwt");
-const express = require("express");
-const router = express();
-
+const router = require('express').Router();
 router.post("/registration", auth.registration);
 router.post("/login", auth.signIn);
 router.put("/update", [authJwt.verifyToken], auth.update);

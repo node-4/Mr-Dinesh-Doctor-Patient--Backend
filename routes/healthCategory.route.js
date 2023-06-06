@@ -1,7 +1,6 @@
 const auth = require("../controllers/healthCategoryController");
 const authJwt = require("../middlewares/authJwt");
-const express = require("express");
-const router = express();
+const router = require('express').Router();
 router.post("/createCategory",authJwt.verifyToken,auth.createCategory);
 router.get("/category/:id", auth.getIdCategory);
 router.patch("/udateCategory/:id",authJwt.verifyToken,auth.updateCategory);
