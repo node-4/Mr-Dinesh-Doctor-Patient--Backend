@@ -2,11 +2,11 @@ const router = require('express').Router();
 const chatController = require("../controllers/chat.Controller");
 const authJwt = require("../middlewares/authJwt");
 
-
-router.post('/userChat', authJwt.verifyToken, chatController.userChat);
-router.get('/viewChat', authJwt.verifyToken, chatController.viewChat);
-router.get('/chattingHistory', authJwt.verifyToken, chatController.chattingHistory);
-router.delete('/deleteChat', authJwt.verifyToken, chatController.deleteChat);
-router.put('/clearChat', authJwt.verifyToken, chatController.clearChat);
-router.put('/deleteAllChat', authJwt.verifyToken, chatController.deleteAllChat);
-module.exports = router;   
+module.exports = (app) => {
+        app.post('/api/v1/chat/userChat', authJwt.verifyToken, chatController.userChat);
+        app.get('/api/v1/chat/viewChat', authJwt.verifyToken, chatController.viewChat);
+        app.get('/api/v1/chat/chattingHistory', authJwt.verifyToken, chatController.chattingHistory);
+        app.delete('/api/v1/chat/deleteChat', authJwt.verifyToken, chatController.deleteChat);
+        app.put('/api/v1/chat/clearChat', authJwt.verifyToken, chatController.clearChat);
+        app.put('/api/v1/chat/deleteAllChat', authJwt.verifyToken, chatController.deleteAllChat);
+};

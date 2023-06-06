@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const bookingController = require("../controllers/booking.Controller");
 const authJwt = require("../middlewares/authJwt");
-
-router.post('/addBook', [authJwt.verifyToken], bookingController.addBook);
-router.get('/getBookingbypreferenceid/:preferenceID', [authJwt.verifyToken], bookingController.getBookingbypreferenceid);
-router.get('/getbookingbyid/:id', [authJwt.verifyToken], bookingController.getbookingbyid);
-router.get('/getallBooking', [authJwt.verifyToken], bookingController.getallBooking);
-router.get('/getBookingbyuserid/me', [authJwt.verifyToken], bookingController.getBookingbyuserid);
-router.get('/getbookingbystatus', [authJwt.verifyToken], bookingController.getbookingbystatus);
-router.delete('/deleteBooking/:id', [authJwt.verifyToken], bookingController.deleteBooking);
-router.put('/editbooking/:id', [authJwt.verifyToken], bookingController.editbooking);
-router.patch('/cancelappointment/:id', [authJwt.verifyToken], bookingController.cancelappointment);
-router.patch('/completedappointment/:id', [authJwt.verifyToken], bookingController.completedappointment);
-module.exports = router;
+module.exports = (app) => {
+        app.post('/api/v1/booking/addBook', [authJwt.verifyToken], bookingController.addBook);
+        app.get('/api/v1/booking/getBookingbypreferenceid/:preferenceID', [authJwt.verifyToken], bookingController.getBookingbypreferenceid);
+        app.get('/api/v1/booking/getbookingbyid/:id', [authJwt.verifyToken], bookingController.getbookingbyid);
+        app.get('/api/v1/booking/getallBooking', [authJwt.verifyToken], bookingController.getallBooking);
+        app.get('/api/v1/booking/getBookingbyuserid/me', [authJwt.verifyToken], bookingController.getBookingbyuserid);
+        app.get('/api/v1/booking/getbookingbystatus', [authJwt.verifyToken], bookingController.getbookingbystatus);
+        app.delete('/api/v1/booking/deleteBooking/:id', [authJwt.verifyToken], bookingController.deleteBooking);
+        app.put('/api/v1/booking/editbooking/:id', [authJwt.verifyToken], bookingController.editbooking);
+        app.patch('/api/v1/booking/cancelappointment/:id', [authJwt.verifyToken], bookingController.cancelappointment);
+        app.patch('/api/v1/booking/completedappointment/:id', [authJwt.verifyToken], bookingController.completedappointment);
+}

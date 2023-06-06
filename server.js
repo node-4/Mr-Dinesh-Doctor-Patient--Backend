@@ -16,16 +16,16 @@ app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
 require("./routes/address.route")(app);
-// require("./routes/admin.route")(app);
-// require("./routes/docter.route")(app);
-// require("./routes/document.route")(app);
-// require("./routes/healthCategory.route")(app);
-// require("./routes/heathtest.router")(app);
-// require("./routes/paitent.route")(app);
-// require("./routes/preference.router")(app);
-// require("./routes/product.route")(app);
-// require("./routes/booking.router")(app);
-// require("./routes/chat.router")(app);
+require("./routes/admin.route")(app);
+require("./routes/docter.route")(app);
+require("./routes/document.route")(app);
+require("./routes/healthCategory.route")(app);
+require("./routes/heathtest.router")(app);
+require("./routes/paitent.route")(app);
+require("./routes/preference.router")(app);
+require("./routes/product.route")(app);
+require("./routes/booking.router")(app);
+require("./routes/chat.router")(app);
 
 
 // app.use("/api/v1/admin", admin);

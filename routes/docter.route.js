@@ -1,13 +1,14 @@
 const auth = require("../controllers/doctor.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
-router.post('/loginWithPhone',auth.loginWithPhone);
-router.post('/registrationFirst/:id',auth.registrationFirst);
-router.post("/:id", auth.verifyOtp);
-router.put("/update", [authJwt.verifyToken], auth.update);
-router.put("/forgotPassword", auth.forgotPassword);
-router.post("/forgotPasswordOtp/:id", auth.forgotPasswordOtp);
-router.post("/resetPassword/:id", auth.resetPassword);
-router.post("/resendotp/:id", auth.resendOTP);
-router.put("/changePassword", [authJwt.verifyToken], auth.changePassword);
-module.exports = router;
+module.exports = (app) => {
+        app.post('/api/v1/docter/loginWithPhone', auth.loginWithPhone);
+        app.post('/api/v1/docter/registrationFirst/:id', auth.registrationFirst);
+        app.post("/api/v1/docter/:id", auth.verifyOtp);
+        app.put("/api/v1/docter/update", [authJwt.verifyToken], auth.update);
+        app.put("/api/v1/docter/forgotPassword", auth.forgotPassword);
+        app.post("/api/v1/docter/forgotPasswordOtp/:id", auth.forgotPasswordOtp);
+        app.post("/api/v1/docter/resetPassword/:id", auth.resetPassword);
+        app.post("/api/v1/docter/resendotp/:id", auth.resendOTP);
+        app.put("/api/v1/docter/changePassword", [authJwt.verifyToken], auth.changePassword);
+}

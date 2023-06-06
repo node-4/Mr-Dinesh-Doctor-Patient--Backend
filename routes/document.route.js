@@ -1,9 +1,10 @@
 const auth = require("../controllers/document.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
-router.post('/createDocument/:id',auth.createDocument);
-router.get('/getDocument',authJwt.verifyToken,auth.getDocument);
-router.put('/update/:id',authJwt.verifyToken,auth.updateDocument);
-router.get('/getbyId/:id',authJwt.verifyToken,auth.getDocumentbyId);
-router.delete('/deletebyId/:id',authJwt.verifyToken,auth.deleteDocument);
-module.exports = router;
+module.exports = (app) => {
+        app.post('/api/v1/document/createDocument/:id', auth.createDocument);
+        app.get('/api/v1/document/getDocument', authJwt.verifyToken, auth.getDocument);
+        app.put('/api/v1/document/update/:id', authJwt.verifyToken, auth.updateDocument);
+        app.get('/api/v1/document/getbyId/:id', authJwt.verifyToken, auth.getDocumentbyId);
+        app.delete('/api/v1/document/deletebyId/:id', authJwt.verifyToken, auth.deleteDocument);
+}

@@ -1,9 +1,10 @@
 const productController = require("../controllers/product.controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
-router.post("/createProduct",[authJwt.verifyToken],productController.createProduct);
-router.get("/admin/:id", productController.getIdProduct);
-router.patch("/updateProduct/:id",[authJwt.verifyToken],productController.updateProduct);
-router.get("/Allproduct", productController.getProduct);
-router.delete("/deleteProduct/:id",[authJwt.verifyToken],productController.deleteProduct);
-module.exports = router;
+module.exports = (app) => {
+        app.post("/api/v1/product/createProduct", [authJwt.verifyToken], productController.createProduct);
+        app.get("/api/v1/product/admin/:id", productController.getIdProduct);
+        app.patch("/api/v1/product/updateProduct/:id", [authJwt.verifyToken], productController.updateProduct);
+        app.get("/api/v1/product/Allproduct", productController.getProduct);
+        app.delete("/api/v1/product/deleteProduct/:id", [authJwt.verifyToken], productController.deleteProduct);
+}
