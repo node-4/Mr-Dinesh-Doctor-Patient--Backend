@@ -1,5 +1,5 @@
-const Testpreference = require("../Models/testpreference.Model");
-const Booking = require("../Models/booking.Model");
+const Testpreference = require("../models/testpreference.Model");
+const Booking = require("../models/booking.Model");
 
 exports.addBook = async (req, res) => {
     try {

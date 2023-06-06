@@ -1,4 +1,4 @@
-const healthCategory = require("../Models/healthCategory.model");
+const healthCategory = require("../models/healthCategory.model");
 exports.createCategory = async (req, res) => {
     try {
         const category = {

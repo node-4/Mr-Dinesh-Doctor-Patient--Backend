@@ -1,5 +1,5 @@
-const User = require("../Models/user.model");
-const doctorDocument = require("../Models/doctor.Document");
+const User = require("../models/user.model");
+const doctorDocument = require("../models/doctor.Document");
 exports.createDocument = async (req, res) => {
     try {
         const user = await User.findById({ _id: req.params.id });

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const bookingController = require("../controllers/bookingController");
+const bookingController = require("../controllers/booking.Controller");
 const authJwt = require("../middlewares/authJwt");
 
 router.post('/addBook', [authJwt.verifyToken], bookingController.addBook);

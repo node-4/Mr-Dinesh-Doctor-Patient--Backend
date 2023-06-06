@@ -1,4 +1,4 @@
-const auth = require("../controllers/doctorController");
+const auth = require("../controllers/doctor.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 router.post('/loginWithPhone',auth.loginWithPhone);

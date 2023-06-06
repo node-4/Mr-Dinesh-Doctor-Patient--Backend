@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const preferenceController = require("../controllers/preferenceController");
+const preferenceController = require("../controllers/preference.Controller");
 const authJwt = require("../middlewares/authJwt");
 
 router.post('/addpreference', preferenceController.addpreference);

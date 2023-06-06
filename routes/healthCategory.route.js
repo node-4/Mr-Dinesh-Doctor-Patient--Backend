@@ -1,4 +1,4 @@
-const auth = require("../controllers/healthCategoryController");
+const auth = require("../controllers/healthCategory.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 router.post("/createCategory",authJwt.verifyToken,auth.createCategory);

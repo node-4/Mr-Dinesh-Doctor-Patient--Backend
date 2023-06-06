@@ -1,4 +1,4 @@
-const auth = require("../controllers/adminController");
+const auth = require("../controllers/admin.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 router.post("/registration", auth.registration);

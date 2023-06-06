@@ -1,4 +1,4 @@
-const auth = require("../controllers/paitentsController");
+const auth = require("../controllers/paitents.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 router.post("/registration", auth.registration);

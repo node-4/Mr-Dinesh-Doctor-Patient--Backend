@@ -1,5 +1,5 @@
-const Testhealth = require("../Models/testhealth.Model");
-const Testpreference = require("../Models/testpreference.Model");
+const Testhealth = require("../models/testhealth.Model");
+const Testpreference = require("../models/testpreference.Model");
 exports.addpreference = async (req, res) => {
     try {
         const { preferencename, preferenceprice, testID } = req.body

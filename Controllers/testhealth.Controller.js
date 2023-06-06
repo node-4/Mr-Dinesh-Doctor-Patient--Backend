@@ -1,4 +1,4 @@
-const Testhealth = require("../Models/testhealth.Model");
+const Testhealth = require("../models/testhealth.Model");
 exports.addhealthtest = async (req, res) => {
     try {
         const { testtitle, testcontent, hour, collections, categoryid, testprice } = req.body;

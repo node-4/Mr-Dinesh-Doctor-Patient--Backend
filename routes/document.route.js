@@ -1,4 +1,4 @@
-const auth = require("../controllers/documentController");
+const auth = require("../controllers/document.Controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 router.post('/createDocument/:id',auth.createDocument);
