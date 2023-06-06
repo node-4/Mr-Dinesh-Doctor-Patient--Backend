@@ -22,7 +22,7 @@ mongoose
 app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
-const address =require("./routes/address.route")
+// const address =require("./routes/address.route")
 const admin =require("./routes/admin.route")
 const docter =require("./routes/docter.route")
 const document =require("./routes/document.route")
@@ -35,7 +35,7 @@ const booking =require("./routes/booking.router")
 const chat =require("./routes/chat.router")
 app.use("/api/v1/admin", admin);
 app.use("/api/v1/paitents", paitent);
-app.use("/api/v1/address", address);
+// app.use("/api/v1/address", address);
 app.use("/api/v1/docter", docter);
 app.use("/api/v1/document", document);
 app.use("/api/v1/testhealth", testhealth);
