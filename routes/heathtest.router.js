@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const auth = require("../Controllers/testhealthController");
+const auth = require("../controllers/testhealthController");
 const authJwt = require("../middlewares/authJwt");
 
 router.post('/addhealthtest', auth.addhealthtest);

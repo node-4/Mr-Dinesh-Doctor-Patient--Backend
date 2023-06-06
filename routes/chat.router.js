@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const chatController = require("../Controllers/chatController");
+const chatController = require("../controllers/chatController");
 const authJwt = require("../middlewares/authJwt");
 
 
