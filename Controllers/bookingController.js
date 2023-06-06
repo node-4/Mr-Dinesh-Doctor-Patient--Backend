@@ -1,5 +1,5 @@
-const Testpreference = require("../Models/testpreferenceModel");
-const Booking  = require("../Models/BookingMode");
+const Testpreference = require("../Models/testpreference.Model");
+const Booking = require("../Models/booking.Model");
 
 exports.addBook = async (req, res) => {
     try {
@@ -105,11 +105,11 @@ exports.getbookingbyid = async (req, res) => {
 }
 exports.getBookingbypreferenceid = async (req, res) => {
     try {
-        const singlebooking = await Booking.find({ preferenceID: req.params.preferenceID }).populate("preferenceID").populate("doctorId").populate("userId")      
-        if (singlebooking.length>0) {
+        const singlebooking = await Booking.find({ preferenceID: req.params.preferenceID }).populate("preferenceID").populate("doctorId").populate("userId")
+        if (singlebooking.length > 0) {
             res.status(200).json({ status: 200, message: "success", data: singlebooking })
         } else {
-            res.status(404).json({status: 404, message: "Invalid Booking ID"})
+            res.status(404).json({ status: 404, message: "Invalid Booking ID" })
         }
 
 

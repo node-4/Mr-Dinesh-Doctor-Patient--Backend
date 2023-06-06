@@ -1,5 +1,5 @@
 const User = require("../Models/user.model");
-const Address = require("../models/AddressModel");
+const Address = require("../Models/address.Model");
 exports.createAddress = async (req, res) => {
     try {
         const user = await User.findById({ _id: req.user.id });
@@ -56,13 +56,13 @@ exports.updateAddress = async (req, res) => {
         } else {
             const findAddress = await Address.findById({ _id: req.params.id });
             if (!findAddress) {
-                res.status(404).json({status: 404,message: "Data not found.",});
+                res.status(404).json({ status: 404, message: "Data not found.", });
             } else {
                 findAddress.address = req.body.address || findAddress.address;
                 findAddress.city = req.body.city || findAddress.city;
                 findAddress.state = req.body.state || findAddress.state;
                 findAddress.pinCode = req.body.pinCode || findAddress.pinCode;
-                findAddress.landMark =req.body.landMark || findAddress.landMark;
+                findAddress.landMark = req.body.landMark || findAddress.landMark;
                 findAddress.street = req.body.street || findAddress.street;
                 findAddress.user = findAddress.user;
                 const updated = await findAddress.save();
@@ -84,7 +84,7 @@ exports.getAddressbyId = async (req, res) => {
         } else {
             const findAddress = await Address.findById({ _id: req.params.id });
             if (!findAddress) {
-                res.status(404).json({status: 404,message: "Data not found.",});
+                res.status(404).json({ status: 404, message: "Data not found.", });
             } else {
                 res.status(200).send({ message: "get Data", data: findAddress });
             }
@@ -104,10 +104,10 @@ exports.deleteAddress = async (req, res) => {
         } else {
             const findAddress = await Address.findById({ _id: req.params.id });
             if (!findAddress) {
-                res.status(404).json({status: 404,message: "Data not found.",});
+                res.status(404).json({ status: 404, message: "Data not found.", });
             } else {
-                let deleteData = await Address.findByIdAndDelete({_id:findAddress._id});
-                res.status(200).json({status: 200,message: "Data Delete.",});
+                let deleteData = await Address.findByIdAndDelete({ _id: findAddress._id });
+                res.status(200).json({ status: 200, message: "Data Delete.", });
             }
         }
     } catch (error) {

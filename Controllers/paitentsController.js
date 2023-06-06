@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require("../Models/user.model");
-const Address = require("../models/AddressModel");
-const helpandSupport = require("../models/helpandsupport");
+const Address = require("../Models/address.Model");
+const helpandSupport = require("../Models/helpandsupport.Model");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
 var newOTP = require("otp-generators");
@@ -284,13 +284,13 @@ exports.changePassword = async (req, res) => {
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
-                if (password !== confirmPassword) {
-                    return res.status(400).json({status: 400,message: "Passwords do not match",});
-                } else {
-                    user.password = bcrypt.hashSync(password, 10);
-                    await user.save();
-                    res.status(200).json({status: 200,message: "Password Changed successful"});
-                }
+            if (password !== confirmPassword) {
+                return res.status(400).json({ status: 400, message: "Passwords do not match", });
+            } else {
+                user.password = bcrypt.hashSync(password, 10);
+                await user.save();
+                res.status(200).json({ status: 200, message: "Password Changed successful" });
+            }
         }
     } catch (error) {
         console.error(error);
@@ -303,10 +303,11 @@ exports.AddQuery = async (req, res) => {
     try {
         req.body.user = req.user._id;
         const Data = await helpandSupport.create(req.body);
-        res.status(200).json({message: Data,
+        res.status(200).json({
+            message: Data,
         });
     } catch (err) {
         console.log(err);
-        res.status(400).json({message: err.message,});
+        res.status(400).json({ message: err.message, });
     }
 };

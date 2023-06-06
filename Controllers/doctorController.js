@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require("../Models/user.model");
-const Address = require("../models/AddressModel");
+const Address = require("../Models/address.Model");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
 var newOTP = require("otp-generators");
@@ -285,13 +285,13 @@ exports.changePassword = async (req, res) => {
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
-                if (password !== confirmPassword) {
-                    return res.status(400).json({status: 400,message: "Passwords do not match",});
-                } else {
-                    user.password = bcrypt.hashSync(password, 10);
-                    await user.save();
-                    res.status(200).json({status: 200,message: "Password Changed successful"});
-                }
+            if (password !== confirmPassword) {
+                return res.status(400).json({ status: 400, message: "Passwords do not match", });
+            } else {
+                user.password = bcrypt.hashSync(password, 10);
+                await user.save();
+                res.status(200).json({ status: 200, message: "Password Changed successful" });
+            }
         }
     } catch (error) {
         console.error(error);

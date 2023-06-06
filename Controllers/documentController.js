@@ -1,5 +1,5 @@
 const User = require("../Models/user.model");
-const doctorDocument = require("../models/doctorDocument");
+const doctorDocument = require("../Models/doctor.Document");
 exports.createDocument = async (req, res) => {
     try {
         const user = await User.findById({ _id: req.params.id });
@@ -8,9 +8,9 @@ exports.createDocument = async (req, res) => {
         } else {
             req.body.user = req.params.id;
             const document = await doctorDocument.create(req.body);
-            if(document){
-                const FindUser = await User.findByIdAndUpdate({ _id: user._id },{$set:{completeProfile: true}},{new: true});
-                if(FindUser){
+            if (document) {
+                const FindUser = await User.findByIdAndUpdate({ _id: user._id }, { $set: { completeProfile: true } }, { new: true });
+                if (FindUser) {
                     res.status(200).json({ status: 200, message: "Document add successfully", userId: FindUser._id, complete: FindUser.completeProfile, });
                 }
             }
@@ -32,7 +32,7 @@ exports.getDocument = async (req, res) => {
             console.log(user);
             const allDocument = await doctorDocument.find({ user: req.user.id });
             if (allDocument.length == 0) {
-                res.status(404).json({status: 404,message: "Data not found."});
+                res.status(404).json({ status: 404, message: "Data not found." });
             } else {
                 res.status(200).json({ status: 200, data: allDocument });
             }
@@ -51,9 +51,9 @@ exports.updateDocument = async (req, res) => {
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
-            const findDocument = await doctorDocument.findById({_id: req.params.id,});
+            const findDocument = await doctorDocument.findById({ _id: req.params.id, });
             if (!findDocument) {
-                res.status(404).json({status: 404,message: "Data not found.",});
+                res.status(404).json({ status: 404, message: "Data not found.", });
             } else {
                 findDocument.idProof = req.body.idProof || findDocument.idProof;
                 findDocument.photo = req.body.photo || findDocument.photo;
@@ -79,11 +79,11 @@ exports.getDocumentbyId = async (req, res) => {
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
-            const findDocument = await doctorDocument.findById({_id: req.params.id,});
+            const findDocument = await doctorDocument.findById({ _id: req.params.id, });
             if (!findDocument) {
-                res.status(404).json({status: 404,message: "Data not found.",});
+                res.status(404).json({ status: 404, message: "Data not found.", });
             } else {
-                res.status(200).send({message: "get Data",data: findDocument,});
+                res.status(200).send({ message: "get Data", data: findDocument, });
             }
         }
     } catch (error) {
@@ -99,11 +99,11 @@ exports.deleteDocument = async (req, res) => {
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
-            const findDocument = await doctorDocument.findById({_id: req.params.id,});
+            const findDocument = await doctorDocument.findById({ _id: req.params.id, });
             if (!findDocument) {
-                res.status(404).json({status: 404,message: "Data not found.",});
+                res.status(404).json({ status: 404, message: "Data not found.", });
             } else {
-                let deleteData = await doctorDocument.findByIdAndDelete({_id: findDocument._id,});
+                let deleteData = await doctorDocument.findByIdAndDelete({ _id: findDocument._id, });
                 res.status(200).json({ status: 200, message: "Data Delete." });
             }
         }

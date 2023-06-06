@@ -1,11 +1,11 @@
 const bcrypt = require("bcryptjs");
 const User = require("../Models/user.model");
-const Address = require("../models/AddressModel");
-const doctorDocument = require("../models/doctorDocument");
-const contactusModel = require("../Models/contactusModel");
+const Address = require("../Models/address.Model");
+const doctorDocument = require("../Models/doctor.Document");
+const contactusModel = require("../Models/contactus.Model");
 const Category = require("../models/category.model");
 const subCategory = require("../models/subcategory.model");
-const helpandSupport = require("../models/helpandsupport");
+const helpandSupport = require("../Models/helpandsupport.Model");
 const FAQ = require("../models/faq.model");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
@@ -283,19 +283,19 @@ exports.documentApprovedreject = async (req, res) => {
 };
 exports.addContact = async (req, res) => {
     const { companyname, email, contactnumber, address } = req.body;
-    if (companyname == "" ||email == "" ||contactnumber == "" ||address == "") {
-        res.status(500).json({status: "Failed",message: "Empty Field Not Accepted",});
+    if (companyname == "" || email == "" || contactnumber == "" || address == "") {
+        res.status(500).json({ status: "Failed", message: "Empty Field Not Accepted", });
     } else {
         const Companyfind = await contactusModel.find();
         if (Companyfind.length > 0) {
-            res.status(500).json({status: "Failed",message: "Contact Exist",});
+            res.status(500).json({ status: "Failed", message: "Contact Exist", });
         } else {
             try {
-                const data = await contactusModel.create({companyname: companyname,email: email,contactnumber: contactnumber,address: address,});
-                res.status(200).json({ status: 200, message: "contact add successfully", data:data });
-            }catch (error) {
+                const data = await contactusModel.create({ companyname: companyname, email: email, contactnumber: contactnumber, address: address, });
+                res.status(200).json({ status: 200, message: "contact add successfully", data: data });
+            } catch (error) {
                 console.log(error);
-                res.status(500).json({message: "An error occurred. Please try again later.",});
+                res.status(500).json({ message: "An error occurred. Please try again later.", });
             }
         }
     }
@@ -310,10 +310,10 @@ exports.editContact = async (req, res) => {
                 contactnumber: req.body.contactnumber || updateid.contactnumber,
                 address: req.body.address || updateid.address,
             };
-            let Contactdetails = await contactusModel.findByIdAndUpdate(req.params.id,data,{ new: true });
-            res.status(200).json({message: "Contact updated successfuly",code: 200,data: Contactdetails,});
+            let Contactdetails = await contactusModel.findByIdAndUpdate(req.params.id, data, { new: true });
+            res.status(200).json({ message: "Contact updated successfuly", code: 200, data: Contactdetails, });
         } else {
-            res.status(400).json({code: 400,status: "failed",message: "Invalid Contact ID"});
+            res.status(400).json({ code: 400, status: "failed", message: "Invalid Contact ID" });
         }
     } catch (error) {
         console.log(error);
@@ -331,7 +331,7 @@ exports.deleteContact = async (req, res) => {
 exports.getcontact = async (req, res) => {
     try {
         const data = await contactusModel.find();
-        res.status(200).json({message: "Contact data fetch.",code: 200,data: data,});
+        res.status(200).json({ message: "Contact data fetch.", code: 200, data: data, });
     } catch (error) {
         res.status(500).json(error);
     }
@@ -383,7 +383,7 @@ exports.getFaq = async (req, res) => {
 exports.getIdFaq = async (req, res) => {
     try {
         console.log(req.params.id);
-        const data = await FAQ.findById({_id: req.params.id});
+        const data = await FAQ.findById({ _id: req.params.id });
         if (!data || data.length === 0) {
             return res.status(400).send({ msg: "not found" });
         }
@@ -413,10 +413,10 @@ exports.createCategory = async (req, res) => {
         };
         const categoryCreated = await Category.create(category);
         console.log(`#### Category add successfully #### /n ${categoryCreated} `);
-        res.status(201).send({message: "Category add successfully",data: categoryCreated,});
+        res.status(201).send({ message: "Category add successfully", data: categoryCreated, });
     } catch (err) {
         console.log("#### error while Category create #### ", err.message);
-        res.status(500).send({message: "Internal server error while creating category",});
+        res.status(500).send({ message: "Internal server error while creating category", });
     }
 };
 exports.getCategory = async (req, res) => {
@@ -454,10 +454,10 @@ exports.updateCategory = async (req, res) => {
         const data = await Category.findById(req.params.id);
         if (!data || data.length === 0) {
             return res.status(400).send({ msg: "not found" });
-        }else{
+        } else {
 
         }
-        const update = await Category.findByIdAndUpdate(req.params.id, req.body, {new: true,});
+        const update = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true, });
         if (!update) {
             return res.status(400).send({ msg: "not found" });
         }
@@ -600,18 +600,19 @@ exports.getByIdhelpandSupport = async (req, res) => {
 exports.getAllHelpandSupport = async (req, res) => {
     try {
         const data = await helpandSupport.find();
-        res.status(200).json({message: data,
+        res.status(200).json({
+            message: data,
         });
     } catch (err) {
         console.log(err);
-        res.status(200).json({message: err.message,});
+        res.status(200).json({ message: err.message, });
     }
 };
 exports.DeleteHelpandSupport = async (req, res) => {
     try {
         await helpandSupport.findByIdAndDelete(req.params.id);
-        res.status(200).json({message: "Deleted",});
+        res.status(200).json({ message: "Deleted", });
     } catch (err) {
-        res.status(400).json({message: err.message,});
+        res.status(400).json({ message: err.message, });
     }
 };

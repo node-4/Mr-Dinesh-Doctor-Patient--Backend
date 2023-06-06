@@ -27,11 +27,11 @@ const admin =require("./routes/admin.route")
 const docter =require("./routes/docter.route")
 const document =require("./routes/document.route")
 const healthCategory =require("./routes/healthCategory.route");
-const testhealth =require("./routes/heathtestRouter")
+const testhealth =require("./routes/heathtest.router")
 const paitent = require("./routes/paitent.route")
-const preferenceRouter =require("./routes/preferenceRouter")
+const preferenceRouter =require("./routes/preference.router")
 const product =require("./routes/product.route")
-const booking =require("./routes/bookingRouter")
+const booking =require("./routes/booking.router")
 const chat =require("./routes/chat.router")
 app.use("/api/v1/admin", admin);
 app.use("/api/v1/paitents", paitent);
