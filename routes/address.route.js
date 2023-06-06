@@ -1,4 +1,4 @@
-const auth = require("../controllers/address.Controller");
+const auth = require("../controllers/address.controller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 router.post('/createAddress', authJwt.verifyToken, auth.createAddress);
