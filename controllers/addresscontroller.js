@@ -12,7 +12,6 @@ exports.createAddress = async (req, res) => {
             const address = await Address.create(req.body);
             res.status(201).json({ success: true, address });
         }
-        
     } catch (error) {
         console.error(error);
         res.status(500).json({
