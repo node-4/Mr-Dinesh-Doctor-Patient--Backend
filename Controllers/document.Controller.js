@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/userModel");
 const doctorDocument = require("../models/doctor.Document");
 exports.createDocument = async (req, res) => {
     try {

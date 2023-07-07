@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/userModel");
 const Address = require("../models/address.Model");
 exports.createAddress = async (req, res) => {
     try {
