@@ -16,16 +16,16 @@ app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
 // require("./routes/addressroute")(app);
-// require("./routes/adminroute")(app);
-// require("./routes/docterroute")(app);
-// require("./routes/documentroute")(app);
-// require("./routes/healthCategoryroute")(app);
-// require("./routes/heathtestrouter")(app);
-// require("./routes/paitentroute")(app);
-// require("./routes/preferencerouter")(app);
-// require("./routes/productroute")(app);
-// require("./routes/bookingrouter")(app);
-// require("./routes/chatrouter")(app);
+require("./routes/adminroute")(app);
+require("./routes/docterroute")(app);
+require("./routes/documentroute")(app);
+require("./routes/healthCategoryroute")(app);
+require("./routes/heathtestrouter")(app);
+require("./routes/paitentroute")(app);
+require("./routes/preferencerouter")(app);
+require("./routes/productroute")(app);
+require("./routes/bookingrouter")(app);
+require("./routes/chatrouter")(app);
 
 
 mongoose.Promise = global.Promise;
