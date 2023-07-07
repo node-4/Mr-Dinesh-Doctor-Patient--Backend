@@ -15,31 +15,17 @@ const PORT = process.env.PORT || 9006;
 app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
-require("./routes/address.route")(app);
-require("./routes/admin.route")(app);
-require("./routes/docter.route")(app);
-require("./routes/document.route")(app);
-require("./routes/healthCategory.route")(app);
-require("./routes/heathtest.router")(app);
-require("./routes/paitent.route")(app);
-require("./routes/preference.router")(app);
-require("./routes/product.route")(app);
-require("./routes/booking.router")(app);
-require("./routes/chat.router")(app);
-
-
-// app.use("/api/v1/admin", admin);
-// app.use("/api/v1/paitents", paitent);
-// app.use("/api/v1/address", address);
-// app.use("/api/v1/docter", docter);
-// app.use("/api/v1/document", document);
-// app.use("/api/v1/testhealth", testhealth);
-// app.use("/api/v1/healthCategory", healthCategory);
-// app.use("/api/v1/preferenceRouter", preferenceRouter);
-// app.use("/api/v1/product", product);
-// app.use("/api/v1/booking", booking);
-// app.use("/api/v1/chat", chat);
-
+require("./routes/addressroute")(app);
+require("./routes/adminroute")(app);
+require("./routes/docterroute")(app);
+require("./routes/documentroute")(app);
+require("./routes/healthCategoryroute")(app);
+require("./routes/heathtestrouter")(app);
+require("./routes/paitentroute")(app);
+require("./routes/preferencerouter")(app);
+require("./routes/productroute")(app);
+require("./routes/bookingrouter")(app);
+require("./routes/chatrouter")(app);
 
 
 mongoose.Promise = global.Promise;

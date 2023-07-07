@@ -1,5 +1,5 @@
 const User = require("../models/userModel");
-const Address = require("../models/address.Model");
+const Address = require("../models/addressModel");
 exports.createAddress = async (req, res) => {
     try {
         const user = await User.findById({ _id: req.user.id });

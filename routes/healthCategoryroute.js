@@ -1,4 +1,4 @@
-const auth = require("../controllers/healthCategory.Controller");
+const auth = require("../controllers/healthCategoryController");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 module.exports = (app) => {

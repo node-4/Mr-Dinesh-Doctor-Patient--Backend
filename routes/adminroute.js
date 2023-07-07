@@ -1,4 +1,4 @@
-const auth = require("../controllers/admin.Controller");
+const auth = require("../controllers/adminController");
 const authJwt = require("../middlewares/authJwt");
 module.exports = (app) => {
         app.post("/api/v1/admin/registration", auth.registration);

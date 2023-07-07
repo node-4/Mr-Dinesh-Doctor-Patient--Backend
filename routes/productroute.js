@@ -1,4 +1,4 @@
-const productController = require("../controllers/product.controller");
+const productController = require("../controllers/productcontroller");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 module.exports = (app) => {

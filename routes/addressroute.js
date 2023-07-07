@@ -1,5 +1,5 @@
 const authJwt = require("../middlewares/authJwt");
-const auth = require("../controllers/address.controller");
+const auth = require("../controllers/addresscontroller");
 module.exports = (app) => {
         app.post('/api/v1/address/createAddress', authJwt.verifyToken, auth.createAddress);
         app.get('/api/v1/address/getAddress', authJwt.verifyToken, auth.getAddress);

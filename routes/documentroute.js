@@ -1,4 +1,4 @@
-const auth = require("../controllers/document.Controller");
+const auth = require("../controllers/documentController");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 module.exports = (app) => {

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const bookingController = require("../controllers/booking.Controller");
+const bookingController = require("../controllers/bookingController");
 const authJwt = require("../middlewares/authJwt");
 module.exports = (app) => {
         app.post('/api/v1/booking/addBook', [authJwt.verifyToken], bookingController.addBook);

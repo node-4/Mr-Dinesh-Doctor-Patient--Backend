@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
-const Address = require("../models/address.Model");
+const Address = require("../models/addressModel");
+const helpandSupport = require("../models/helpandsupportModel");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
 var newOTP = require("otp-generators");
@@ -8,69 +9,67 @@ const nodemailer = require("nodemailer");
 exports.loginWithPhone = async (req, res) => {
     const { phone } = req.body;
     try {
-        const user = await User.findOne({ phone: phone, role: "doctor" });
+        const user = await User.findOne({ phone: phone, role: "patient" });
         if (!user) {
-            req.body.role = "doctor";
-            req.body.otp = newOTP.generate(4, {
-                alphabets: false,
-                upperCase: false,
-                specialChar: false,
-            });
-            req.body.otpExpiration = new Date(Date.now() + 5 * 60 * 1000);
-            req.body.accountVerification = false;
-            const userCreate = await User.create(req.body);
-            res.status(200).send({
-                message: "registered successfully ",
-                userId: userCreate._id,
-                otp: userCreate.otp,
-                complete: userCreate.completeProfile,
-            });
-        } else {
-            const userObj = {};
-            userObj.otp = newOTP.generate(4, {
-                alphabets: false,
-                upperCase: false,
-                specialChar: false,
-            });
-            userObj.otpExpiration = new Date(Date.now() + 5 * 60 * 1000); // OTP expires in 5 minutes
-            userObj.accountVerification = false;
-            const updated = await User.findOneAndUpdate(
-                { phone: phone, role: "doctor" },
-                userObj,
-                { new: true }
-            );
-            res.status(200).send({
-                userId: updated._id,
-                otp: updated.otp,
-                complete: updated.completeProfile,
-            });
+            return res.status(400).send({ msg: "not found" });
         }
+        const userObj = {};
+        userObj.otp = newOTP.generate(4, {
+            alphabets: false,
+            upperCase: false,
+            specialChar: false,
+        });
+        userObj.otpExpiration = new Date(Date.now() + 5 * 60 * 1000); // OTP expires in 5 minutes
+        userObj.accountVerification = false;
+        const updated = await User.findOneAndUpdate(
+            { phone: phone, role: "patient" },
+            userObj,
+            { new: true }
+        );
+        res.status(200).send({ userId: updated._id, otp: updated.otp });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error" });
     }
 };
-exports.registrationFirst = async (req, res) => {
+exports.registration = async (req, res) => {
+    const { phone, email } = req.body;
     try {
-        const { fullName, dob, registrationNumber } = req.body;
-        const user = await User.findById(req.params.id);
+        req.body.email = email.split(" ").join("").toLowerCase();
+        let user = await User.findOne({
+            $and: [{ $or: [{ email: req.body.email }, { phone: phone }] }],
+            role: "patient",
+        });
         if (!user) {
-            return res.status(404).send({ message: "not found" });
+            if (req.body.password == req.body.confirmPassword) {
+                req.body.password = bcrypt.hashSync(req.body.password, 8);
+                req.body.role = "patient";
+                req.body.otp = newOTP.generate(4, {
+                    alphabets: false,
+                    upperCase: false,
+                    specialChar: false,
+                });
+                req.body.otpExpiration = new Date(Date.now() + 5 * 60 * 1000); // OTP expires in 5 minutes
+                req.body.accountVerification = false;
+                const userCreate = await User.create(req.body);
+                res.status(200).send({
+                    message: "registered successfully ",
+                    data: userCreate,
+                });
+            } else {
+                res.status(501).send({
+                    status: 501,
+                    message: "Password Not matched.",
+                    data: {},
+                });
+            }
+        } else {
+            e;
+            res.status(409).send({ message: "Alrady Exist", data: [] });
         }
-        user.fullName = fullName || user.fullName;
-        user.dob = dob || user.dob;
-        user.registrationNumber = registrationNumber || user.registrationNumber;
-        const updated = await user.save();
-        res.status(200).send({
-            message: "updated",
-            userId: updated._id,
-            complete: updated.completeProfil,
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send({
-            message: "internal server error " + err.message,
-        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 exports.verifyOtp = async (req, res) => {
@@ -298,5 +297,17 @@ exports.changePassword = async (req, res) => {
         res.status(500).json({
             message: "An error occurred. Please try again later.",
         });
+    }
+};
+exports.AddQuery = async (req, res) => {
+    try {
+        req.body.user = req.user._id;
+        const Data = await helpandSupport.create(req.body);
+        res.status(200).json({
+            message: Data,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: err.message, });
     }
 };

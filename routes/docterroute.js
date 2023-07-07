@@ -1,4 +1,4 @@
-const auth = require("../controllers/doctor.Controller");
+const auth = require("../controllers/doctorController");
 const authJwt = require("../middlewares/authJwt");
 const router = require('express').Router();
 module.exports = (app) => {
