@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 9006;
 app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
-// require("./routes/addressroute")(app);
+require("./routes/addressroute")(app);
 require("./routes/adminroute")(app);
 require("./routes/docterroute")(app);
 require("./routes/documentroute")(app);
