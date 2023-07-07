@@ -1,8 +1,8 @@
-const User = require("../models/userModel");
+const userModel = require("../models/userModel");
 const Address = require("../models/addressModel");
 exports.createAddress = async (req, res) => {
     try {
-        const user = await User.findById({ _id: req.user.id });
+        const user = await userModel.findById({ _id: req.user.id });
         if (!user) {
             return res
                 .status(400)
@@ -22,7 +22,7 @@ exports.createAddress = async (req, res) => {
 
 exports.getAddress = async (req, res) => {
     try {
-        const user = await User.findById({ _id: req.user.id });
+        const user = await userModel.findById({ _id: req.user.id });
         if (!user) {
             return res
                 .status(400)
@@ -48,7 +48,7 @@ exports.getAddress = async (req, res) => {
 
 exports.updateAddress = async (req, res) => {
     try {
-        const user = await User.findById({ _id: req.user.id });
+        const user = await userModel.findById({ _id: req.user.id });
         if (!user) {
             return res
                 .status(400)
@@ -78,7 +78,7 @@ exports.updateAddress = async (req, res) => {
 
 exports.getAddressbyId = async (req, res) => {
     try {
-        const user = await User.findById({ _id: req.user.id });
+        const user = await userModel.findById({ _id: req.user.id });
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
@@ -98,7 +98,7 @@ exports.getAddressbyId = async (req, res) => {
 
 exports.deleteAddress = async (req, res) => {
     try {
-        const user = await User.findById({ _id: req.user.id });
+        const user = await userModel.findById({ _id: req.user.id });
         if (!user) {
             return res.status(400).json({ status: 400, message: "Invalid or expired token" });
         } else {
