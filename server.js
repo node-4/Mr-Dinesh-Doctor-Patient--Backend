@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
     res.status(200).send({ msg: "Working App" });
 });
 // require("./routes/addressroute")(app);
+
 require("./routes/adminroute")(app);
 require("./routes/docterroute")(app);
 require("./routes/documentroute")(app);
