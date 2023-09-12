@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
     {
-        categoryId: {
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: "category",
-        },
         vendorId: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: "user",
@@ -19,4 +15,4 @@ const schema = new mongoose.Schema(
     },
     { timeseries: true }
 );
-module.exports = mongoose.model("subcategory", schema);
+module.exports = mongoose.model("category", schema);
