@@ -29,6 +29,13 @@ require("./routes/chat.router")(app);
 require("./routes/pharmacy.route")(app);
 require("./routes/order.route")(app);
 
+
+
+
+
+
+
+
 const static = require('./routes/static.route');
 app.use('/api/v1/static', static);
 
