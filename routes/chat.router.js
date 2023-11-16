@@ -9,4 +9,7 @@ module.exports = (app) => {
         app.delete('/api/v1/chat/deleteChat', authJwt.verifyToken, chatController.deleteChat);
         app.put('/api/v1/chat/clearChat', authJwt.verifyToken, chatController.clearChat);
         app.put('/api/v1/chat/deleteAllChat', authJwt.verifyToken, chatController.deleteAllChat);
+        app.get('/api/v1/chat/rtc/:channel/:role/:tokentype/:uid', chatController.generateRTCToken);
+        app.get('/api/v1/chat/rtm/:uid/', chatController.generateRTMToken);
+        app.get('/api/v1/chat/rte/:channel/:role/:tokentype/:uid', chatController.generateRTEToken)
 };
